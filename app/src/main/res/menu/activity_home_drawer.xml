@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Events">
+        <menu>
+
+            <group android:checkableBehavior="single"> <!-- Keep in mind that to make checkable grouping is must-->
+
+                <item
+                    android:id="@+id/nav_cultual"
+                    android:icon="@drawable/cultural"
+                    android:title="Cultural" />
+
+                <item
+                    android:id="@+id/nav_technical"
+                    android:icon="@drawable/technical"
+                    android:title="Technical" />
+
+                <item
+                    android:id="@+id/nav_gaming"
+                    android:icon="@drawable/game"
+                    android:title="Gaming" />
+
+                <item
+                    android:id="@+id/nav_informal"
+                    android:icon="@drawable/informal"
+                    android:title="Informal" />
+
+                <item
+                    android:id="@+id/nav_literary"
+                    android:icon="@drawable/literary"
+                    android:title="Literary and Fine Arts" />
+
+            </group>
+        </menu>
+    </item>
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_dark"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/nav_registered"
+            android:icon="@drawable/registeredcheck"
+            android:title="Registered Events" />
+    </group>
+
+</menu>

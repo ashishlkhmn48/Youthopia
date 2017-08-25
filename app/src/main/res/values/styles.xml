@@ -1,0 +1,59 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item><!-- Just to change the colour of navigation icon  -->
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/black</item>
+    </style>  <!-- Just to change the colour of navigation icon  -->
+
+    <style name="NavigationThemeSW350" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginBottom">1dp</item>
+    </style>  <!-- Just to change the size and spacing b/w items of navigation drawer  -->
+
+    <style name="NavigationThemeSW400" parent="AppTheme">
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>  <!-- Just to change the size and spacing b/w items of navigation drawer  -->
+
+
+    <style name="OverflowTheme" parent="Widget.AppCompat.ActionBar">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:textColor">@color/selectedColor</item>
+    </style>  <!-- Just to change the size and spacing b/w items of overflow menu  -->
+
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@color/selectedColor</item>
+    </style>  <!-- Progress Bar colour-->
+
+    <style name="toggleButton"  parent="@android:style/Theme.Black">
+        <item name="android:buttonStyleToggle">@android:style/Widget.Button.Toggle</item>
+        <item name="android:textOn"></item>
+        <item name="android:textOff"></item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/selectedColor</item>
+    </style>
+
+</resources>

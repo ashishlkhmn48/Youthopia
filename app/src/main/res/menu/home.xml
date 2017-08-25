@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/actionSearch"
+        android:icon="@drawable/search"
+        android:orderInCategory="100"
+        android:title="Search"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/trick"
+        android:icon="@drawable/overflow"
+        android:orderInCategory="101"
+        android:title=""
+        app:showAsAction="always">  <!-- A trick to display icons in overflow menu -->
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_about"
+                android:orderInCategory="100"
+                android:title="About" />
+
+            <item
+                android:id="@+id/nav_contact"
+                android:orderInCategory="101"
+                android:title="Contact Us" />
+
+            <item
+                android:id="@+id/nav_schedule"
+                android:orderInCategory="102"
+                android:title="Schedule" />
+
+            <item
+                android:id="@+id/nav_sponsors"
+                android:orderInCategory="103"
+                android:title="Sponsors" />
+
+            <item
+                android:id="@+id/nav_logout"
+                android:orderInCategory="103"
+                android:title="Sign Out"/>
+
+        </menu>
+
+    </item>
+
+</menu>

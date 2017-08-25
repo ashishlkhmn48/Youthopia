@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "763632997480",
+    "firebase_url": "https://youthopia-80ed9.firebaseio.com",
+    "project_id": "youthopia-80ed9",
+    "storage_bucket": "youthopia-80ed9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:763632997480:android:4a78e919f4fc9d31",
+        "android_client_info": {
+          "package_name": "com.ashishlakhmani.youthopia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "763632997480-d6mlu299voilsbatcs9oac6s95ru9tsq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashishlakhmani.youthopia",
+            "certificate_hash": "aa91ad2d5d8af6d77d553d0a0b9f3cde7ad903bb"
+          }
+        },
+        {
+          "client_id": "763632997480-05sqabobirg4fqkngom22mnklfo96cp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQeeBWMCp9vxSGWNBD-PtY8QqyzCPAq58"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "763632997480-05sqabobirg4fqkngom22mnklfo96cp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

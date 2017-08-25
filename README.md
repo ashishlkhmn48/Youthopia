@@ -5,3 +5,5 @@ Highlights  :
 3. Google Sign In
 4. Push Notification Mechanism
 5. Picture Gallery
+
+Payment Gateway for Registrations Coming Soon.

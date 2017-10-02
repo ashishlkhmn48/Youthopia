@@ -9,13 +9,14 @@
     android:background="@android:color/white"
     android:clickable="true">
 
+
+
     <Button
         android:id="@+id/register_button"
         android:layout_width="120dp"
         android:layout_height="70dp"
         android:layout_alignBaseline="@+id/album_button"
         android:layout_alignBottom="@+id/album_button"
-        android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/facebook"
         android:background="@drawable/button_style"
         android:elevation="24dp"
@@ -28,8 +29,9 @@
         app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.18" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/homeViewPager"
+        app:layout_constraintVertical_bias="0.13999999" />
 
     <ImageView
         android:id="@+id/register_image"
@@ -42,7 +44,6 @@
         app:layout_constraintRight_toLeftOf="@+id/register_button"
         app:srcCompat="@drawable/register"
         app:layout_constraintTop_toTopOf="@+id/register_button"
-        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/register_button"
         android:layout_marginBottom="8dp"
         app:layout_constraintVertical_bias="0.656" />
@@ -54,7 +55,6 @@
         android:layout_alignStart="@+id/register_image"
         android:layout_alignTop="@+id/schedule_button"
         android:layout_marginBottom="8dp"
-        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/schedule_button"
         app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -69,7 +69,6 @@
         android:layout_width="120dp"
         android:layout_height="70dp"
         android:layout_alignBottom="@+id/register_image"
-        android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/recyclerView"
         android:background="@drawable/button_style"
         android:elevation="24dp"
@@ -91,9 +90,6 @@
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/recyclerView"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
         android:background="@drawable/button_style"
         android:elevation="24dp"
         android:fontFamily="monospace"
@@ -105,18 +101,16 @@
         app:layout_constraintHorizontal_bias="0.756"
         app:layout_constraintLeft_toRightOf="@+id/register_button"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.18"
-        tools:text="Album" />
+        tools:text="Album"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/homeViewPager"
+        app:layout_constraintVertical_bias="0.13999999" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/album_button"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toRightOf="@+id/register_button"
@@ -163,10 +157,6 @@
         android:id="@+id/imageView12"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/facebook_button"
         app:layout_constraintLeft_toRightOf="@+id/schedule_button"
         app:layout_constraintRight_toLeftOf="@+id/facebook_button"
@@ -175,21 +165,18 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintVertical_bias="0.514" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginStart="2dp"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/homeViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

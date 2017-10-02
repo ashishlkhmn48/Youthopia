@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ashishlakhmani.youthopia.classes.TouchImageView;
 import com.ashishlakhmani.youthopia.R;
+import com.ashishlakhmani.youthopia.classes.TouchImageView;
 import com.squareup.picasso.Picasso;
 
 

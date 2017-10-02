@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -33,9 +32,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ashishlakhmani.youthopia.classes.CheckNotification;
 import com.ashishlakhmani.youthopia.R;
 import com.ashishlakhmani.youthopia.adapter.TabPager;
+import com.ashishlakhmani.youthopia.classes.CheckNotification;
 import com.ashishlakhmani.youthopia.fragment.AllEventsFragment;
 import com.ashishlakhmani.youthopia.fragment.EventCommonFragment;
 import com.ashishlakhmani.youthopia.fragment.EventTypeCommonFragment;
@@ -51,7 +50,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 

@@ -16,8 +16,7 @@ import org.json.JSONObject;
 
 public class HomePicViewActivity extends AppCompatActivity { //implements HomePhotosAdapter.OnClickInAdapter{
 
-    int numberofpics;
-    ViewPager viewPager;
+    private int numberofpics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +48,7 @@ public class HomePicViewActivity extends AppCompatActivity { //implements HomePh
             Toast.makeText(this, "Sorry..Something went wrong..!!", Toast.LENGTH_SHORT).show();
         }
 
-        viewPager = (ViewPager) findViewById(R.id.homePicViewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.homePicViewPager);
         int position = bundle.getInt("data");
         GalleryPager galleryPager = new GalleryPager(numberofpics, this);
         viewPager.setAdapter(galleryPager);

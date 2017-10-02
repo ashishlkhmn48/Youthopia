@@ -71,6 +71,7 @@ public class Home extends AppCompatActivity implements GoogleApiClient.OnConnect
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
         setContentView(R.layout.activity_home);
 
+
         //To ensure that only 1st time these things happen..
         SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
 

@@ -20,13 +20,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 
 
 public class FragmentList extends Fragment {
 
     public static HashMap<String, String> eventDetails = new HashMap<>();
-    public static List<String> suggestions = new ArrayList<String>();
+    public static ArrayList<String> suggestions = new ArrayList<String>();
     SuggestionAdapter suggestionAdapter;
     static boolean isTypedOnce = false;
     MaterialSearchView searchView;
@@ -73,22 +72,21 @@ public class FragmentList extends Fragment {
         if (!newText.isEmpty()) {
             isTypedOnce = true;
             newText = newText.toLowerCase();
-            List<String> newList = new ArrayList<String>();
+            ArrayList<String> newList = new ArrayList<>();
             for (String sl : eventDetails.keySet()) {
                 String name = sl.toLowerCase();
                 if (name.contains(newText)) {
                     newList.add(sl);
-                    Collections.sort(newList);
                 }
-
             }
+            Collections.sort(newList);
             suggestionAdapter.setFilter(newList);
             return true;
         } else {
             if (!isTypedOnce)
                 return false;
             else {
-                List<String> newList = new ArrayList<String>();
+                ArrayList<String> newList = new ArrayList<String>();
                 suggestionAdapter.setFilter(newList);
                 return true;
             }

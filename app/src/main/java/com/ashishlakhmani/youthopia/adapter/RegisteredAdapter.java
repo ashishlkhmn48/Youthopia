@@ -77,7 +77,7 @@ public class RegisteredAdapter extends RecyclerView.Adapter {
         return registeredNameList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder {
         // initialize the item view's
 
         TextView registeredTextView;

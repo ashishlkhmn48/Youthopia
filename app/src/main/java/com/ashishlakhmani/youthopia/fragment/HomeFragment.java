@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import com.ashishlakhmani.youthopia.R;
 import com.ashishlakhmani.youthopia.activity.Home;
 import com.ashishlakhmani.youthopia.activity.SplashScreen;
-import com.ashishlakhmani.youthopia.adapter.HomePhotosAdapter;
 import com.ashishlakhmani.youthopia.adapter.HomePhotosPager;
 
 import org.json.JSONArray;
@@ -24,7 +23,6 @@ import org.json.JSONObject;
 
 public class HomeFragment extends Fragment {
 
-    HomePhotosAdapter homePhotosAdapter;
     ViewPager viewPager;
     int numberofpics;
 
@@ -59,7 +57,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
         try {
             JSONObject jsonObject = new JSONObject(SplashScreen.jsonString);
             JSONArray jsonArray = jsonObject.getJSONArray("number");
@@ -68,20 +65,8 @@ public class HomeFragment extends Fragment {
         } catch (Exception e) {
         }
 
-
-
-        /*//Recycler View initialization
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        //*******numOfPhotos = Perform json task to get the number******
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        homePhotosAdapter = new HomePhotosAdapter(getContext(), numberofpics);
-        recyclerView.setAdapter(homePhotosAdapter);*/
-
         ViewPager viewPager = (ViewPager)view.findViewById(R.id.homeViewPager);
-        HomePhotosPager galleryPager = new HomePhotosPager(10, getContext());
+        HomePhotosPager galleryPager = new HomePhotosPager(numberofpics, getContext());
         viewPager.setPageMargin(30);
         viewPager.setAdapter(galleryPager);
         return view;

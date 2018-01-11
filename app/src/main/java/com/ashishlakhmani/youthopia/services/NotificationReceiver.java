@@ -5,75 +5,74 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.NotificationCompat;
+import android.graphics.BitmapFactory;
+import android.support.v4.app.NotificationCompat;
 
 import com.ashishlakhmani.youthopia.R;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
+import com.ashishlakhmani.youthopia.activity.Home;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.util.Random;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class NotificationReceiver extends BroadcastReceiver {
 
-    private static final int uniqueID = (int)(10000*Math.random());
-
     @Override
     public void onReceive(Context context, Intent intent) {
-        createNotification(context);
+        String heading = intent.getStringExtra("heading");
+        String picture = intent.getStringExtra("picture_link");
+        createNotification(context, heading, picture);
     }
 
-    private void createNotification(final Context context) {
+    private void createNotification(final Context context, String heading, String picture) {
+
+        Random random = new Random();
+        int num = random.nextInt(999999999);
+
+        Bitmap largeIcon;
+        try {
+            largeIcon = getBitmapFromURL(picture);
+        } catch (Exception e) {
+            largeIcon = BitmapFactory.decodeResource(context.getResources(), R.drawable.logo2);
+        }
+
         final NotificationCompat.Builder notification = new NotificationCompat.Builder(context);
         notification.setAutoCancel(true);
         notification.setSmallIcon(R.drawable.notification);
         notification.setWhen(System.currentTimeMillis());
-        notification.setContentTitle("You have Registered for Event/s.");
-        notification.setContentText("Kindly have a look on Details and Schedule.");
+        notification.setContentTitle("Youthopia Event");
+        notification.setContentText("Get Ready for " + heading);
+        notification.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(largeIcon));
         notification.setDefaults(NotificationCompat.DEFAULT_ALL);
 
+        Intent intent = new Intent(context, Home.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pi = PendingIntent.getActivity(context, num, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notification.setContentIntent(pi);
+        NotificationManager nm = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        if (nm != null) {
+            nm.notify(num, notification.build());
+        }
 
-        Target target = new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
-                style.bigPicture(bitmap);
-                notification.setStyle(style);
-                //Intent intent = new Intent(context,SplashScreen.class);
-                //Another way to get launch intent i.e in this case SplashScreen
-                Intent intent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
+        SharedPreferences sharedPreferences = context.getSharedPreferences("notification", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(heading.trim());
+        editor.apply();
 
-                PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.setContentIntent(pi);
+    }
 
-                NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                nm.notify(uniqueID, notification.build());
-            }
-
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {
-                errorDrawable = context.getResources().getDrawable(R.drawable.logo2, null);
-                Bitmap bitmap = ((BitmapDrawable) errorDrawable).getBitmap();
-                NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
-                style.bigPicture(bitmap);
-                notification.setStyle(style);
-                //Intent intent = new Intent(context,SplashScreen.class);
-                //Another way to get launch intent i.e in this case SplashScreen
-                Intent intent = context.getPackageManager().getLaunchIntentForPackage(context.getPackageName());
-
-                PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.setContentIntent(pi);
-
-                NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                nm.notify(uniqueID, notification.build());
-            }
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-            }
-        };
-        Picasso.with(context).load("https://ashishlakhmani.000webhostapp.com/notification_pics/logo3.jpg").into(target);
+    public Bitmap getBitmapFromURL(String src) throws IOException {
+        java.net.URL url = new java.net.URL(src);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setDoInput(true);
+        connection.connect();
+        InputStream input = connection.getInputStream();
+        return BitmapFactory.decodeStream(input);
     }
 }
 

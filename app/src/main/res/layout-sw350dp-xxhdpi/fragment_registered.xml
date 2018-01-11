@@ -24,8 +24,6 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="18dp"
@@ -38,7 +36,9 @@
         android:text="Registered Events"
         android:textColor="@color/selectedColor"
         android:textSize="27sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/favoriteRecyclerView"
@@ -48,7 +48,8 @@
         android:layout_below="@+id/textView2"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
-        android:layout_marginTop="15dp" />
+        android:layout_marginTop="15dp"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

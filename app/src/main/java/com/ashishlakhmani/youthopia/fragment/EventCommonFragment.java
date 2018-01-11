@@ -29,7 +29,7 @@ public class EventCommonFragment extends Fragment {
 
         DetailsFragment detailsFragment = new DetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("detailsLink",getArguments().getString("detailsLink"));
+        bundle.putString("detailsLink", getArguments().getString("detailsLink"));
         detailsFragment.setArguments(bundle);
         loadFragmentBottomNavigation(detailsFragment, "details");
 
@@ -41,21 +41,24 @@ public class EventCommonFragment extends Fragment {
                     case R.id.details:
                         DetailsFragment detailsFragment = new DetailsFragment();
                         Bundle bundle = new Bundle();
-                        bundle.putString("detailsLink",getArguments().getString("detailsLink"));
+                        bundle.putString("detailsLink", getArguments().getString("detailsLink"));
                         detailsFragment.setArguments(bundle);
                         loadFragmentBottomNavigation(detailsFragment, "details");
                         break;
 
                     case R.id.register:
-                        Fragment registration = getFragmentManager().findFragmentByTag("register");
-                        if (registration == null) {
-                            SharedPreferences sp = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
-                            String email = sp.getString("email",null);
-                            CheckParticipation checkParticipation = new CheckParticipation(getContext(),getArguments().getString("eventName"));
-                            checkParticipation.execute(email);
-                        }
+                        SharedPreferences sp = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
+                        String email = sp.getString("email", null);
+                        CheckParticipation checkParticipation = new CheckParticipation(getContext(), getArguments().getString("eventName"));
+                        checkParticipation.execute(email);
                 }
                 return true;
+            }
+        });
+
+        navigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
             }
         });
         return view;

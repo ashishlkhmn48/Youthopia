@@ -32,5 +32,4 @@ public class TabPager extends FragmentStatePagerAdapter {
         return numOfTabs;
     }
 
-
 }

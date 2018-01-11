@@ -1,8 +1,10 @@
 package com.ashishlakhmani.youthopia.activity;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -34,7 +36,6 @@ import android.widget.Toast;
 
 import com.ashishlakhmani.youthopia.R;
 import com.ashishlakhmani.youthopia.adapter.TabPager;
-import com.ashishlakhmani.youthopia.classes.CheckNotification;
 import com.ashishlakhmani.youthopia.fragment.AllEventsFragment;
 import com.ashishlakhmani.youthopia.fragment.EventCommonFragment;
 import com.ashishlakhmani.youthopia.fragment.EventTypeCommonFragment;
@@ -49,9 +50,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 
 public class Home extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -75,7 +73,6 @@ public class Home extends AppCompatActivity implements GoogleApiClient.OnConnect
         //To ensure that only 1st time these things happen..
         SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
 
-
         if (sp.getBoolean("isFirstTimeLogin", true)) {
             Toast.makeText(this, sp.getString("email", ""), Toast.LENGTH_SHORT).show();
             Toast.makeText(this, "Welcome " + sp.getString("name", "").toUpperCase(), Toast.LENGTH_LONG).show();
@@ -83,11 +80,6 @@ public class Home extends AppCompatActivity implements GoogleApiClient.OnConnect
             editor.remove("isFirstTimeLogin");
             editor.putBoolean("isFirstTimeLogin", false);
             editor.apply();
-        }
-
-        if (sp.getBoolean("notificationFlag", true)) {
-            CheckNotification checkNotification = new CheckNotification(this);
-            checkNotification.execute(sp.getString("email", ""));
         }
 
         //Google sign in task..
@@ -405,16 +397,9 @@ public class Home extends AppCompatActivity implements GoogleApiClient.OnConnect
 
     //to open facebook app
     public void onFacebookClick(View view) {
-        startActivity(openFacebookIntent());
-    }
-
-    private Intent openFacebookIntent() {
-        try {
-            getPackageManager().getPackageInfo("com.facebook.katana", 0);
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/1423400424622502"));
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/dityouthopia2016"));
-        }
+        String YourPageURL = "https://www.facebook.com/n/?dityouthopia2016";
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(YourPageURL));
+        startActivity(browserIntent);
     }
 
     //to open instagram app
@@ -558,52 +543,54 @@ public class Home extends AppCompatActivity implements GoogleApiClient.OnConnect
         fragmentTransaction.commit();
     }
 
-    //For notifications
-    public void setNotificationsActive() {
-
-        //Calendar calendar1 = new GregorianCalendar(2017,8,5,9,0,0);
-        Calendar calendar1 = new GregorianCalendar();
-        //Calendar calendar2 = new GregorianCalendar(2017,8,6,9,0,0);
-        Calendar calendar2 = new GregorianCalendar();
-        long alarmDay1 = calendar1.getTimeInMillis() + 30000;
-        long alarmDay2 = calendar2.getTimeInMillis() + 50000;
-
-        Intent intent = new Intent(this, NotificationReceiver.class);
-        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(getApplicationContext(), 56, intent, 0);
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 67, intent, 0);
-        AlarmManager alarmManager1 = (AlarmManager) getSystemService(ALARM_SERVICE);
-        AlarmManager alarmManager2 = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager1.set(AlarmManager.RTC_WAKEUP, alarmDay1, pendingIntent1);
-        alarmManager2.set(AlarmManager.RTC_WAKEUP, alarmDay2, pendingIntent2);
-        SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.remove("notificationFlag");
-        editor.putBoolean("notificationFlag", false);
-        editor.apply();
-    }
 
     private void signOutTask() {
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle("Sign Out");
+        builder.setMessage("Do you want to Sign Out ?");
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
-            public void onResult(@NonNull Status status) {
-                Intent i = new Intent(Home.this, NotificationReceiver.class);
-                PendingIntent pendingIntent1 = PendingIntent.getBroadcast(getApplicationContext(), 13, i, 0);
-                PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 4, i, 0);
-                AlarmManager alarmManager1 = (AlarmManager) getSystemService(ALARM_SERVICE);
-                AlarmManager alarmManager2 = (AlarmManager) getSystemService(ALARM_SERVICE);
-                alarmManager1.cancel(pendingIntent1);
-                alarmManager2.cancel(pendingIntent2);
-                SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.remove("name");
-                editor.remove("email");
-                editor.remove("isFirstTimeLogin");
-                editor.remove("notificationFlag");
-                editor.apply();
-                Intent intent = new Intent(Home.this, SplashScreen.class);
-                startActivity(intent);
-                finish();
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
             }
         });
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        Intent i = new Intent(Home.this, NotificationReceiver.class);
+                        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(getApplicationContext(), 13, i, 0);
+                        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getApplicationContext(), 4, i, 0);
+                        AlarmManager alarmManager1 = (AlarmManager) getSystemService(ALARM_SERVICE);
+                        AlarmManager alarmManager2 = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                        if (alarmManager1 != null)
+                            alarmManager1.cancel(pendingIntent1);
+                        if (alarmManager2 != null)
+                            alarmManager2.cancel(pendingIntent2);
+
+                        SharedPreferences sp = getSharedPreferences("login", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.remove("name");
+                        editor.remove("email");
+                        editor.remove("isFirstTimeLogin");
+                        editor.remove("notificationFlag");
+                        editor.apply();
+                        Intent intent = new Intent(Home.this, SplashScreen.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

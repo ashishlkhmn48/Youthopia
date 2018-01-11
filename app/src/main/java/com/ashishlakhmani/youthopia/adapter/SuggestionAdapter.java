@@ -15,6 +15,7 @@ import com.ashishlakhmani.youthopia.activity.Home;
 import com.ashishlakhmani.youthopia.fragment.EventCommonFragment;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,11 +24,11 @@ public class SuggestionAdapter extends RecyclerView.Adapter {
 
     private Context context;
     private List<String> suggestions;
-    private HashMap<String,String> eventDetails;
+    private HashMap<String, String> eventDetails;
     private MaterialSearchView searchView;
 
 
-    public SuggestionAdapter(Context context, HashMap<String,String> eventDetails,List<String> suggestions, MaterialSearchView searchView) {
+    public SuggestionAdapter(Context context, HashMap<String, String> eventDetails, List<String> suggestions, MaterialSearchView searchView) {
         this.context = context;
         this.eventDetails = eventDetails;
         this.suggestions = suggestions;
@@ -41,7 +42,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
         //Here each item of arraylist will go to the list view..
         final String eventName = suggestions.get(position);
@@ -54,10 +55,10 @@ public class SuggestionAdapter extends RecyclerView.Adapter {
             public void onClick(View v) {
                 EventCommonFragment eventCommonFragment = new EventCommonFragment();
                 Bundle bundle = new Bundle();
-                bundle.putString("eventName",eventName);
-                bundle.putString("detailsLink",detailsLink);
+                bundle.putString("eventName", eventName);
+                bundle.putString("detailsLink", detailsLink);
                 eventCommonFragment.setArguments(bundle);
-                if (!((Home) context).isEventFragmentVisible(eventName)){
+                if (!((Home) context).isEventFragmentVisible(eventName)) {
                     searchView.closeSearch();
                     ((Home) context).loadFragment(eventCommonFragment, eventName);
                 }
@@ -81,11 +82,11 @@ public class SuggestionAdapter extends RecyclerView.Adapter {
             super(itemView);
             // get the reference of item view's
             name = itemView.findViewById(R.id.text);
-            cardView =  itemView.findViewById(R.id.suggestion_cardView);
+            cardView = itemView.findViewById(R.id.suggestion_cardView);
         }
     }
 
-    public void setFilter(List<String> newList) {
+    public void setFilter(ArrayList<String> newList) {
         suggestions = newList;
         notifyDataSetChanged();
     }

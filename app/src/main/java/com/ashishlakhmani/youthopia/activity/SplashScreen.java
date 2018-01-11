@@ -13,9 +13,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ashishlakhmani.youthopia.R;
 import com.ashishlakhmani.youthopia.classes.InsertToDatabase;
 import com.ashishlakhmani.youthopia.classes.LoadJson;
-import com.ashishlakhmani.youthopia.R;
 import com.ashishlakhmani.youthopia.fragment.NetworkError;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -151,14 +151,16 @@ public class SplashScreen extends AppCompatActivity implements
         boolean haveConnectedMobile = false;
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (activeNetwork != null) { // connected to the internet
-            if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                // connected to wifi
-                haveConnectedWifi = true;
-            } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                // connected to the mobile provider's data plan
-                haveConnectedMobile = true;
+        if (cm != null) {
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            if (activeNetwork != null) { // connected to the internet
+                if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                    // connected to wifi
+                    haveConnectedWifi = true;
+                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                    // connected to the mobile provider's data plan
+                    haveConnectedMobile = true;
+                }
             }
         }
         return (haveConnectedMobile || haveConnectedWifi);

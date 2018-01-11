@@ -1,22 +1,23 @@
 package com.ashishlakhmani.youthopia.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.ashishlakhmani.youthopia.R;
-import com.ashishlakhmani.youthopia.classes.TouchImageView;
+import com.ashishlakhmani.youthopia.activity.HomePicViewActivity;
 import com.squareup.picasso.Picasso;
 
-
-public class GalleryPager extends PagerAdapter {
+public class HomePhotosPager extends PagerAdapter {
     private int numberofpics;
     private Context context;
-    private static final String URL = "https://ashishlakhmani.000webhostapp.com/pics_large/";
+    private static final String URL = "https://ashishlakhmani.000webhostapp.com/pics_small/";
 
-    public GalleryPager(int numberofpics, Context context) {
+    public HomePhotosPager(int numberofpics, Context context) {
         this.numberofpics = numberofpics;
         this.context = context;
     }
@@ -32,16 +33,25 @@ public class GalleryPager extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.gallery_layout, container, false);
+        View view = inflater.inflate(R.layout.photos_layout, container, false);
 
 
-        TouchImageView imageView = (TouchImageView) view.findViewById(R.id.pic_view_gallery);
+        ImageView imageView = (ImageView) view.findViewById(R.id.homePic);
         Picasso.with(context)
                 .load(URL + (position + 1) + ".jpg")
                 .placeholder(R.drawable.placeholder_album)
                 .into(imageView);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, HomePicViewActivity.class);
+                intent.putExtra("data", position);
+                context.startActivity(intent);
+            }
+        });
 
         container.addView(view);
         return view;
@@ -49,9 +59,7 @@ public class GalleryPager extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        View view = (View)object;
+        View view = (View) object;
         container.removeView(view);
     }
-
-
 }

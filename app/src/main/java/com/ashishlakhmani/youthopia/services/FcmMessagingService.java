@@ -49,6 +49,8 @@ public class FcmMessagingService extends FirebaseMessagingService {
         notification.setContentIntent(pi);
 
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.notify(uniqueID, notification.build());
+        if (nm != null) {
+            nm.notify(uniqueID, notification.build());
+        }
     }
 }

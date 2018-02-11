@@ -1,6 +1,6 @@
 # Youthopia 2k16
 
-<img src = "app/src/main/res/drawable/logo.png" width = "200">
+<img src = "app/src/main/res/drawable/logo.png" width = "300">
 
 <h1>About</h1>
 <p>

@@ -1,5 +1,7 @@
 # Youthopia 2k16
 
+<img src = "app/src/main/res/drawable/logo.png" width = "200">
+
 <h1>About</h1>
 <p>
 Youthopia 2016 is the annual technical and cultural fest organized by DIT University, Dehradun. Originated with the sole aim of enhancing technical skills and promoting creativity among the students, this knowledge and cultural carnival has encompassed all boundaries to become a worldwide. 

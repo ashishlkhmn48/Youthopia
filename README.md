@@ -13,6 +13,17 @@ This 3 day technical fest is set to be the most exhilarating experience for stud
 The events and workshops are meticulously designed to accentuate all genres of talent and reward the meritorious. Combining events and activities spanning various domains namely Battle of Bands, Fashionista, Literary Events, Informals and the Star Nights all under one roof.
 </p>
 
+<h1>Highlights of the App :</h1>
+<ol>
+<li>Clean Material UI</li>
+<li>Event Registration for DIT University's Annual Cultural Fest.</li>
+<li>Google Sign In</li>
+<li>Push Notification Mechanism for Admins</li>
+<li>Picture Gallery</li>
+<li>Personalized Notifications for Each Event</li>
+</ol>
+
+
 <h1>Technologies Used</h1>
 <ul>
 <li>ANDROID Libraries</li>
@@ -23,7 +34,7 @@ The events and workshops are meticulously designed to accentuate all genres of t
 <li>MYSQL</li>
 </ul>
 
-<h1>Glimpses of DIT SPHERE</h1>
+<h1>Glimpses of Youthopia 2k16</h1>
 <table>
   <tr>
     <th> <img src = "images/1.png" width = "200"> </th>
@@ -44,8 +55,7 @@ The events and workshops are meticulously designed to accentuate all genres of t
   <b>And Many More..</b>
 
 <h1>Apk of DIT SPHERE</h1>
-<a href = "https://raw.githubusercontent.com/ashishlkhmn48/DIT_SPHERE/master/images/sphere.apk">Click to Download</a>
-<br>
+<a href = "https://raw.githubusercontent.com/ashishlkhmn48/Youthopia/master/images/youthopia.apk">Click to Download</a>
 Use your Google Account.
 
 <h1>Backend Files of DIT SPHERE for Reference</h1>
@@ -59,14 +69,3 @@ https://github.com/ashishlkhmn48/Youthopia_Files
   <li>https://www.w3schools.com</li>
   <li>https://stackoverflow.com</li>
 </ul>
-
-
-
-<h1>Highlights :</h1>
-1. Clean Material UI
-2. Event Registration for DIT University's Annual Cultural Fest.
-3. Google Sign In
-4. Push Notification Mechanism
-5. Picture Gallery
-
-Payment Gateway for Registrations Coming Soon.
